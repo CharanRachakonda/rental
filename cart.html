@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container text-center">
+        <h2>Your Cart</h2>
+        <div id="cartDetails"></div>
+        <a href="success.html" class="btn" id="rentButton">Rent</a>
+    </div>
+
+    <script>
+        // Load selected vehicle from localStorage
+        const selectedVehicle = JSON.parse(localStorage.getItem('selectedVehicle'));
+
+        if (selectedVehicle) {
+            const { model, price, days } = selectedVehicle;
+            const totalCost = price * days;
+
+            // Display cart details
+            document.getElementById('cartDetails').innerHTML = `
+                <p>Vehicle: ${model}</p>
+                <p>Days: ${days}</p>
+                <p>Price per day: $${price}</p>
+                <p><strong>Total Price: $${totalCost}</strong></p>
+            `;
+        } else {
+            document.getElementById('cartDetails').innerHTML = `<p>No vehicle selected.</p>`;
+            document.getElementById('rentButton').style.display = 'none'; // Hide Rent button if no vehicle is selected
+        }
+
+        // Clear cart on Rent button click
+        document.getElementById('rentButton').addEventListener('click', function() {
+            localStorage.removeItem('selectedVehicle');
+            alert("Vehicle rented out successfully!");
+        });
+    </script>
+</body>
+</html>
