@@ -48,3 +48,81 @@ git log -1 -- register.jsp
 git show
 
 git show <commit-hash>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Use Tomcat 9 as base image
+FROM tomcat:9.0
+
+# Copy your built WAR into Tomcat’s webapps folder
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
+
+# Start Tomcat
+CMD ["catalina.sh", "run"]
+2.	Image Building           - 2 Marks
+o	Build the Docker image using 
+      docker build -t flightimage .
+o	docker run --name flightcontainer –d flightimage
+3.	Push to Docker Hub – 5 Marks
+o	Tag and push the created image to your Docker Hub account.
+o	docker login
+o	docker commit < flightcontainer>   <docker hub name>/<new image name>
+o	docker push <docker hub name>/<new image name>
+
+a.	You want to run a container from the nginx image and access it on port 8080. What do you do?
+docker run -d -p 8080:80 nginx
+
+b.	You started multiple containers but forgot which are running. How do you list them?
+docker ps
+
+c.	Your container flightcontainer is running. How do you stop it?
+docker stop carcontainer
+
+d.	Your app crashed in the container. You need to check the logs. How do you check this?
+docker logs <container_name_or_id>
+
+e.	You want to see how much CPU/RAM each container uses. What Docker CLI command do you use? How to Control or Limit RAM in Docker? How to Measure Actual Memory Usage?
+docker stats
+
+f.	How do you open a shell inside a running container named ubuntu?
+docker exec -it ubuntu /bin/bash
+
+g.	You want 3 instances of the app service using docker-compose. How do you do it?
+docker-compose up --scale app=3.
+
+h.	You're not sure which container is using port 3000. How do you check?
+docker ps
+
+i.	You want to start a container and work inside it immediately with a shell. How to do?
+i.	docker run -it your-image /bin/bash
+
+j.	You’ve built a image above using Dockerfile. Now how to delete it?
+docker rmi flightimage
+
